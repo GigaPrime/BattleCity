@@ -8,8 +8,10 @@ const int DOWN = 3;
 const int LEFT = 4;
 
 //BattleField dimentions
-const int WIDTH = 60;
-const int HEIGHT = 30;
+const int FIELD_X = 10;
+const int FIELD_Y = 10;
+const int FIELD_WIDTH = 60;
+const int FIELD_HEIGHT = 30;
 
 //Action constants
 const char FIRE = ' ';
@@ -30,6 +32,10 @@ const char GV = char(186); //gun_vertical
 const char BD = char(176); //body
 const char SP = char(255); //space
 const char FR = char('*'); //fire
+
+//Tank size constants
+const int TANK_WIDTH = 5;
+const int TANK_HEIGHT = 3;
 
 #endif // !__CONSTANTS_H__
 

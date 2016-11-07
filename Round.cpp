@@ -59,10 +59,10 @@ bool roundCollision(Round round)
 	{
 	case RIGHT:
 	case LEFT:
-		return round.x >= 0 && round.x <= WIDTH;
+		return round.x >= 0 && round.x <= FIELD_WIDTH;
 	case UP:
 	case DOWN:
-		return round.y >= 0 && round.y <= HEIGHT;
+		return round.y >= 0 && round.y <= FIELD_HEIGHT;
 	}
 }
 
