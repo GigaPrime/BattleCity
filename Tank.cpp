@@ -36,6 +36,34 @@ Tank chageTankState(Tank tank)
 	return tank;
 }
 
+Tank chageTankState(Tank tank, int direction)
+{
+	if (tank.direction == direction)
+	{
+		switch (tank.direction)
+		{
+		case RIGHT:
+			tank.x++;
+			break;
+		case DOWN:
+			tank.y++;
+			break;
+		case LEFT:
+			tank.x--;
+			break;
+		case UP:
+			tank.y--;
+			break;
+		}
+	}
+	else
+	{
+		tank.direction = direction;
+	}
+
+	return tank;
+}
+
 Round newRound(Tank tank)
 {
 	Round newRound;

@@ -12,6 +12,12 @@ char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 	},
 
 	{
+		{ CV, SP, SP, SP, CV },
+		{ CV, BD, BD, BD, CV },
+		{ CV, SP, GV, SP, CV }
+	},
+
+	{
 		{ CH, CH, CH, CH, CH },
 		{ SP, GH, GH, BD, SP },
 		{ CH, CH, CH, CH, CH }
@@ -23,11 +29,6 @@ char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 		{ CV, SP, SP, SP, CV }
 	},
 
-	{
-		{ CV, SP, SP, SP, CV },
-		{ CV, BD, BD, BD, CV },
-		{ CV, SP, GV, SP, CV }
-	},
 };
 
 #endif // !__SPRITES_H__

@@ -14,6 +14,7 @@ struct Tank
 };
 
 Tank chageTankState(Tank tank);
+Tank chageTankState(Tank tank, int direction);
 Round newRound(Tank tank);
 Tank newTank(COORD coord, int direction);
 

@@ -2,15 +2,15 @@
 #define __CONSTANTS_H__
 
 //Direction constants
-const int UP = 1;
-const int RIGHT = 2;
-const int DOWN = 3;
-const int LEFT = 4;
+const int RIGHT = 0;
+const int DOWN = 1;
+const int LEFT = 2;
+const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
 
 //BattleField dimentions
-const int FIELD_X = 10;
-const int FIELD_Y = 10;
+const int FIELD_X = 0;
+const int FIELD_Y = 0;
 const int FIELD_WIDTH = 60;
 const int FIELD_HEIGHT = 30;
 

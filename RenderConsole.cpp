@@ -33,3 +33,19 @@ void unrender(Round round)
 {
 	WriteChar(round.x, round.y, ' ');
 }
+
+void renderBounds()
+{
+	ShowCursor(false);
+
+	for (int x = FIELD_X; x <= FIELD_WIDTH; x++)
+	{
+		WriteChar(x, FIELD_Y, 'X');
+		WriteChar(x, FIELD_HEIGHT, 'X');
+	}
+	for (int y = FIELD_Y; y <= FIELD_HEIGHT; y++)
+	{
+		WriteChar(FIELD_X, y, 'X');
+		WriteChar(FIELD_WIDTH, y, 'X');
+	}
+}

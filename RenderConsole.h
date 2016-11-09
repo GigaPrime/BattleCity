@@ -4,6 +4,8 @@
 #ifndef __RENDERCONSOLE_H__
 #define __RENDERCONSOLE_H__
 
+void renderBounds();
+
 void render(Tank tank);
 void render(Round round);
 
