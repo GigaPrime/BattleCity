@@ -11,5 +11,3 @@ bool checkCollision(Tank tank, Round round); // round to tank collision;
 bool checkCollision(Round round1, Round round2); // round to round collision;
 
 #endif // !__Collisions_H__
-
-

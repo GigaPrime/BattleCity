@@ -3,7 +3,7 @@
 #ifndef __SPRITES_H__
 #define	__SPRITES_H__
 
-char tankSprites[4][3][5]
+char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 {
 	{
 		{ CH, CH, CH, CH, CH },

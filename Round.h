@@ -9,7 +9,6 @@ struct Round
 	int direction;
 };
 
-
 Round chageRoundState(Round round);
 
 #endif // !__ROUND_H__

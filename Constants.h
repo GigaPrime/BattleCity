@@ -6,6 +6,7 @@ const int UP = 1;
 const int RIGHT = 2;
 const int DOWN = 3;
 const int LEFT = 4;
+const int TOTAL_DIRECTIONS = 4;
 
 //BattleField dimentions
 const int FIELD_X = 10;
@@ -37,5 +38,7 @@ const char FR = char('*'); //fire
 const int TANK_WIDTH = 5;
 const int TANK_HEIGHT = 3;
 
-#endif // !__CONSTANTS_H__
+//Game constants
+const int MAX_ENEMIES = 3;
 
+#endif // !__CONSTANTS_H__

@@ -1,63 +1,15 @@
-#include <iostream>
-#include <conio.h>
-#include <math.h>
 #include <windows.h>
 #include "Tank.h"
 #include "Constants.h"
-#include "Collisions.h"
 using namespace std;
 
-Tank testTank;
-
-void handleTank()
-{
-	if (testTank.isAlive)
-	{
-		Tank newState = chageTankState(testTank);
-
-		if (checkCollision(newState))
-		{
-			testTank.x = false;
-		}
-		else
-		{
-			testTank = newState;
-		}
-	}
-	else
-	{
-		if (_kbhit())
-		{
-			char action = _getch();
-			if (action == FIRE)
-			{
-				testTank = newTank();
-			}
-		}
-	}
-}
-
-Tank newTank()
+Tank newTank(COORD coord, int direction)
 {
 	Tank newTank;
-	newTank.x = 0;
-	newTank.y = 0;
-	newTank.direction;
+	newTank.x = coord.X;
+	newTank.y = coord.Y;
+	newTank.direction = direction;
 	newTank.isAlive = true;
-
-	if (_kbhit())
-	{
-		char action = _getch();
-		if (action == 'w')
-			newTank.direction = UP;
-		else if (action == 'd')
-			newTank.direction = RIGHT;
-		else if (action == 's')
-			newTank.direction = DOWN;
-		else if (action == 'a')
-			newTank.direction = LEFT;
-	}
-
 	return newTank;
 }
 

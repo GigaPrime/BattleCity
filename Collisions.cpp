@@ -1,11 +1,7 @@
-#include <iostream>
-#include <conio.h>
-#include <math.h>
 #include <windows.h>
 #include "Round.h"
 #include "Tank.h"
 #include "Constants.h"
-#include "ConsoleLib.h"
 
 bool checkCollision(Tank tank)
 {

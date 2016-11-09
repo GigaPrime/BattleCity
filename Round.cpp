@@ -1,15 +1,6 @@
-#include <iostream>
-#include <conio.h>
-#include <math.h>
-#include <windows.h>
 #include "Round.h"
 #include "Constants.h"
-#include "ConsoleLib.h"
-#include "Collisions.h"
 using namespace std;
-
-
-
 
 Round chageRoundState(Round round)
 {
@@ -33,4 +24,3 @@ Round chageRoundState(Round round)
 	}
 	return round;
 }
-
