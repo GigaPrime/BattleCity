@@ -12,5 +12,10 @@ struct Tank
 	Round round;
 };
 
+void handleTank();
+Tank chageTankState(Tank tank);
+Round newRound(Tank tank);
+Tank newTank();
+
 #endif // !__TANK_H__
 

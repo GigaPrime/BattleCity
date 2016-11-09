@@ -1,4 +1,3 @@
-#include "Tank.h"
 #include "Constants.h"
 
 #ifndef __SPRITES_H__
