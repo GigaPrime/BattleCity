@@ -6,12 +6,12 @@
 bool checkCollision(Tank tank)
 {
 	COORD topLeft = { tank.x, tank.y };
-	COORD bottomRight = { tank.x + TANK_WIDTH, tank.y + TANK_HEIGHT };
+	COORD bottomRight = { tank.x + TANK_WIDTH - 1, tank.y + TANK_HEIGHT - 1};
 
 	return (topLeft.X <= FIELD_X) ||
-		(topLeft.Y <= FIELD_Y) ||
-		(bottomRight.X >= FIELD_X + FIELD_WIDTH) ||
-		(bottomRight.Y >= FIELD_Y + FIELD_WIDTH);
+		   (topLeft.Y <= FIELD_Y) ||
+		   (bottomRight.X >= FIELD_WIDTH) ||
+		   (bottomRight.Y >= FIELD_HEIGHT);
 }
 
 bool checkCollision(Round round)
@@ -19,27 +19,27 @@ bool checkCollision(Round round)
 	COORD roundFlight = { round.x, round.y };
 
 	return (round.x <= FIELD_X) ||
-		(round.y <= FIELD_Y) ||
-		(round.x >= FIELD_X + FIELD_WIDTH) ||
-		(round.y >= FIELD_Y + FIELD_HEIGHT);
+		   (round.y <= FIELD_Y) ||
+		   (round.x >= FIELD_WIDTH) ||
+		   (round.y >= FIELD_HEIGHT);
 }
 
 bool checkCollision(Tank tank1, Tank tank2)
 {
 	COORD topLeftT1 = { tank1.x, tank1.y };
 	COORD topLeftT2 = { tank2.x, tank2.y };
-	COORD bottomRightT1 = { tank1.x + TANK_WIDTH, tank1.y + TANK_HEIGHT };
-	COORD bottomRightT2 = { tank2.x + TANK_WIDTH, tank2.y + TANK_HEIGHT };
+	COORD bottomRightT1 = { tank1.x + TANK_WIDTH - 1, tank1.y + TANK_HEIGHT - 1 };
+	COORD bottomRightT2 = { tank2.x + TANK_WIDTH - 1, tank2.y + TANK_HEIGHT - 1 };
 
 	return (topLeftT2.X > topLeftT1.X && topLeftT2.Y > topLeftT1.Y && topLeftT2.X < bottomRightT1.X && topLeftT2.Y < bottomRightT1.Y) ||
-		(bottomRightT2.X > topLeftT1.X && bottomRightT2.Y > topLeftT1.Y && bottomRightT2.X < bottomRightT1.X && bottomRightT2.Y < bottomRightT1.Y) ||
-		(topLeftT1.X == topLeftT2.X && topLeftT1.Y == topLeftT2.Y);
+		   (bottomRightT2.X > topLeftT1.X && bottomRightT2.Y > topLeftT1.Y && bottomRightT2.X < bottomRightT1.X && bottomRightT2.Y < bottomRightT1.Y) ||
+		   (topLeftT1.X == topLeftT2.X && topLeftT1.Y == topLeftT2.Y);
 }
 
 bool checkCollision(Round round, Tank tank)
 {
 	COORD topLeft = { tank.x, tank.y };
-	COORD bottomRight = { tank.x + TANK_WIDTH, tank.y + TANK_HEIGHT };
+	COORD bottomRight = { tank.x + TANK_WIDTH - 1, tank.y + TANK_HEIGHT - 1 };
 	COORD roundFlight = { round.x, round.y };
 
 	return (round.x >= topLeft.X && round.x <= bottomRight.X && round.y >= topLeft.Y && round.y < bottomRight.Y);

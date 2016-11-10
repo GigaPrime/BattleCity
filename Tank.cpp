@@ -15,8 +15,8 @@ Tank newTank(COORD coord, int direction)
 
 Tank chageTankState(Tank tank)
 {
-	double deltaH = ROUND_SPEED_H / FPS;
-	double deltaV = ROUND_SPEED_V / FPS;
+	double deltaH = TANK_SPEED_H / FPS;
+	double deltaV = TANK_SPEED_V / FPS;
 
 	switch (tank.direction)
 	{

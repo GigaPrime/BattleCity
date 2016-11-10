@@ -6,10 +6,10 @@
 
 void renderBounds();
 
-void render(Tank tank);
+void render(Tank player);
 void render(Round round);
 
-void unrender(Tank tank);
+void unrender(Tank player);
 void unrender(Round round);
 
 #endif // !__RENDERCONSOLE_H__

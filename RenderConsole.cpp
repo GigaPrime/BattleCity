@@ -26,16 +26,28 @@ void unrender(Tank tank)
 
 void render(Round round)
 {
-	WriteChar(round.x, round.y, '*');
+	for (int x = 0; x < FIELD_WIDTH; x++)
+	{
+		WriteChar(round.x, round.y, FR);
+	}
 }
 
 void unrender(Round round)
 {
-	WriteChar(round.x, round.y, ' ');
+	for (int x = 0; x <= FIELD_WIDTH; x++)
+	{
+		WriteChar(round.x, round.y, SP);
+	}
 }
 
 void renderBounds()
 {
+	// Console title name
+	SetConsoleTitleA("Battle City");
+
+	// Console buffer size
+	system("mode con lines=62 cols=102");
+
 	ShowCursor(false);
 
 	for (int x = FIELD_X; x <= FIELD_WIDTH; x++)

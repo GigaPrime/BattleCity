@@ -8,6 +8,7 @@
 #include "RenderConsole.h"
 
 Tank player, prevPlayer;
+Tank ai, prevAi;
 
 void Game()
 {
@@ -17,15 +18,17 @@ void Game()
 
 void runBattle()
 {
-	COORD coord = { 2, 2 };
-	player = newTank(coord, DOWN);
+	COORD playerStart = { 30, 20 };
+	player = newTank(playerStart, DOWN);
+
+	COORD aiStart = { 40, 30 };
+	ai = newTank(aiStart, UP);
 
 	while (true)
 	{
 		handlePlayerInput();
 		handleAiInput();
 		handlePlayerRounds();
-		handleAiInput();
 		render();
 		Sleep(MAIN_LOOP_SLEEP);
 	}
@@ -45,7 +48,7 @@ void handlePlayerInput()
 			direction = LEFT;
 		else if (action == 'w')
 			direction = UP;
-		else if (action == ' ')
+		else if (action == FIRE)
 			player.round = newRound(player);
 
 		if (direction != -1)
@@ -63,7 +66,17 @@ void handlePlayerInput()
 
 void handleAiInput()
 {
+	Tank newAiState = chageTankState(ai, ai.direction);
 
+	if (checkCollision(newAiState))
+	{
+		ai.direction = rand() % 4;
+	}
+	else
+	{
+		prevAi = ai;
+		ai = newAiState;
+	}
 }
 
 void handlePlayerRounds()
@@ -94,35 +107,12 @@ void render()
 	render(player);
 	unrender(prevPlayer.round);
 	render(player.round);
+	unrender(prevAi);
+	render(ai);
 }
 
 void showBounds()
 {
 	renderBounds();
 }
-
-//if (player.isAlive)
-//{
-//	Tank newState = chageTankState(player);
-//
-//	if (checkCollision(newState))
-//	{
-//		player.x = false;
-//	}
-//	else
-//	{
-//		testTank = newState;
-//	}
-//}
-//else
-//{
-//	if (_kbhit())
-//	{
-//		char action = _getch();
-//		if (action == RIGHT)
-//		{
-//			testTank = newTank();
-//		}
-//	}
-
 

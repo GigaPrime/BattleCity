@@ -27,7 +27,7 @@ char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 		{ CV, SP, GV, SP, CV },
 		{ CV, BD, BD, BD, CV },
 		{ CV, SP, SP, SP, CV }
-	},
+	}
 
 };
 

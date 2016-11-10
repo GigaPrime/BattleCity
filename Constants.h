@@ -9,20 +9,22 @@ const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
 
 //BattleField dimentions
-const int FIELD_X = 0;
-const int FIELD_Y = 0;
-const int FIELD_WIDTH = 60;
-const int FIELD_HEIGHT = 30;
+const int FIELD_X = 20;
+const int FIELD_Y = 10;
+const int FIELD_WIDTH = FIELD_X + 60;
+const int FIELD_HEIGHT = FIELD_Y + 40;
 
 //Action constants
 const char FIRE = ' ';
 
 //Symbols per seconds
-const int ROUND_SPEED_H = 10;
-const int ROUND_SPEED_V = ROUND_SPEED_H / 2;
+const double ROUND_SPEED_H = 30;
+const double ROUND_SPEED_V = ROUND_SPEED_H / 1.5;
+const double TANK_SPEED_H = 15;
+const double TANK_SPEED_V = TANK_SPEED_H / 1.5;
 
 //FPS
-const int FPS = 10;
+const int FPS = 24;
 const int MAIN_LOOP_SLEEP = 1000 / FPS;
 
 //Tank wiev elements
