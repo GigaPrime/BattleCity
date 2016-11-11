@@ -26,18 +26,13 @@ void unrender(Tank tank)
 
 void render(Round round)
 {
-	for (int x = 0; x < FIELD_WIDTH; x++)
-	{
+	if(round.isActive)
 		WriteChar(round.x, round.y, FR);
-	}
 }
 
 void unrender(Round round)
 {
-	for (int x = 0; x <= FIELD_WIDTH; x++)
-	{
-		WriteChar(round.x, round.y, SP);
-	}
+	WriteChar(round.x, round.y, SP);
 }
 
 void renderBounds()

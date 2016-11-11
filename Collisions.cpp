@@ -2,6 +2,7 @@
 #include "Round.h"
 #include "Tank.h"
 #include "Constants.h"
+#include "Utils.h"
 
 bool checkCollision(Tank tank)
 {
@@ -16,8 +17,6 @@ bool checkCollision(Tank tank)
 
 bool checkCollision(Round round)
 {
-	COORD roundFlight = { round.x, round.y };
-
 	return (round.x <= FIELD_X) ||
 		   (round.y <= FIELD_Y) ||
 		   (round.x >= FIELD_WIDTH) ||
@@ -26,14 +25,18 @@ bool checkCollision(Round round)
 
 bool checkCollision(Tank tank1, Tank tank2)
 {
-	COORD topLeftT1 = { tank1.x, tank1.y };
 	COORD topLeftT2 = { tank2.x, tank2.y };
-	COORD bottomRightT1 = { tank1.x + TANK_WIDTH - 1, tank1.y + TANK_HEIGHT - 1 };
 	COORD bottomRightT2 = { tank2.x + TANK_WIDTH - 1, tank2.y + TANK_HEIGHT - 1 };
 
-	return (topLeftT2.X > topLeftT1.X && topLeftT2.Y > topLeftT1.Y && topLeftT2.X < bottomRightT1.X && topLeftT2.Y < bottomRightT1.Y) ||
-		   (bottomRightT2.X > topLeftT1.X && bottomRightT2.Y > topLeftT1.Y && bottomRightT2.X < bottomRightT1.X && bottomRightT2.Y < bottomRightT1.Y) ||
-		   (topLeftT1.X == topLeftT2.X && topLeftT1.Y == topLeftT2.Y);
+	COORD topLeftT1 = { tank1.x, tank1.y };
+	COORD topRightT1 = { tank1.x + TANK_WIDTH - 1, tank1.y };
+	COORD bottomLeftT1 = { tank1.x, tank1.y + TANK_HEIGHT - 1 };
+	COORD bottomRightT1 = { tank1.x + TANK_WIDTH - 1, tank1.y + TANK_HEIGHT - 1 };
+
+	return isPointWithinRectangle(topLeftT1, topLeftT2, bottomRightT2) || 
+		   isPointWithinRectangle(topRightT1, topLeftT2, bottomRightT2) ||
+		   isPointWithinRectangle(bottomLeftT1, topLeftT2, bottomRightT2) ||
+		   isPointWithinRectangle(bottomRightT1, topLeftT2, bottomRightT2);
 }
 
 bool checkCollision(Round round, Tank tank)

@@ -1,28 +1,30 @@
-#include <Windows.h>
-#include <Conio.h>
+#include <conio.h>
+#include <time.h>
 #include "Round.h"
 #include "Tank.h"
 #include "Collisions.h"
 #include "Constants.h"
 #include "BattleCity.h"
 #include "RenderConsole.h"
+#include "Utils.h"
 
 Tank player, prevPlayer;
 Tank ai, prevAi;
 
+COORD playerStart = { 30, 20 };
+COORD aiStart = { 40, 30 };
+
 void Game()
 {
+	srand(time(0));
 	showBounds();
 	runBattle();
 }
 
 void runBattle()
 {
-	COORD playerStart = { 30, 20 };
 	player = newTank(playerStart, DOWN);
-
-	COORD aiStart = { 40, 30 };
-	ai = newTank(aiStart, UP);
+	ai = newAiTank(aiStart, UP);
 
 	while (true)
 	{
@@ -48,14 +50,15 @@ void handlePlayerInput()
 			direction = LEFT;
 		else if (action == 'w')
 			direction = UP;
-		else if (action == FIRE)
+		else if (action == FIRE && !player.round.isActive)
 			player.round = newRound(player);
 
 		if (direction != -1)
 		{			
 			Tank newPlayerState = chageTankState(player, direction);
 
-			if (!checkCollision(newPlayerState))
+			if (!checkCollision(newPlayerState) && 
+				!checkCollision(newPlayerState, ai))
 			{
 				prevPlayer = player;
 				player = newPlayerState;
@@ -66,11 +69,18 @@ void handlePlayerInput()
 
 void handleAiInput()
 {
-	Tank newAiState = chageTankState(ai, ai.direction);
-
-	if (checkCollision(newAiState))
+	if (ai.directionTimer.isAlive)
 	{
-		ai.direction = rand() % 4;
+		ai.directionTimer.counter--;	
+	}
+	
+	Tank newAiState = chageTankState(ai);
+
+	if (checkCollision(newAiState) ||
+		checkCollision(newAiState, player) ||
+		ai.directionTimer.counter <= 0)
+	{
+		ai = changeAiTankDirection(ai);
 	}
 	else
 	{
@@ -84,9 +94,9 @@ void handlePlayerRounds()
 	if (player.round.isActive)
 	{
 		Round newRoundState = chageRoundState(player.round);
+		prevPlayer.round = player.round;
 		if (!checkCollision(newRoundState))
 		{
-			prevPlayer.round = player.round;
 			player.round = newRoundState;
 		}
 		else
@@ -104,11 +114,12 @@ void handleAiRounds()
 void render()
 {
 	unrender(prevPlayer);
-	render(player);
-	unrender(prevPlayer.round);
-	render(player.round);
 	unrender(prevAi);
+	unrender(prevPlayer.round);
+
+	render(player);
 	render(ai);
+	render(player.round);
 }
 
 void showBounds()

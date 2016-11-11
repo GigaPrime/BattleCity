@@ -9,22 +9,22 @@ const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
 
 //BattleField dimentions
-const int FIELD_X = 20;
-const int FIELD_Y = 10;
+const int FIELD_X = 10;
+const int FIELD_Y = 5;
 const int FIELD_WIDTH = FIELD_X + 60;
-const int FIELD_HEIGHT = FIELD_Y + 40;
+const int FIELD_HEIGHT = FIELD_Y + 30;
 
 //Action constants
 const char FIRE = ' ';
 
 //Symbols per seconds
-const double ROUND_SPEED_H = 30;
-const double ROUND_SPEED_V = ROUND_SPEED_H / 1.5;
-const double TANK_SPEED_H = 15;
-const double TANK_SPEED_V = TANK_SPEED_H / 1.5;
+const double ROUND_SPEED_H = 50;
+const double ROUND_SPEED_V = ROUND_SPEED_H / 2;
+const double TANK_SPEED_H = 25;
+const double TANK_SPEED_V = TANK_SPEED_H / 2;
 
 //FPS
-const int FPS = 24;
+const int FPS = 25;
 const int MAIN_LOOP_SLEEP = 1000 / FPS;
 
 //Tank wiev elements
@@ -42,5 +42,7 @@ const int TANK_HEIGHT = 3;
 
 //Game constants
 const int MAX_ENEMIES = 3;
+const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
+const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
 
 #endif // !__CONSTANTS_H__

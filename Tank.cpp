@@ -1,6 +1,6 @@
-#include <windows.h>
 #include "Tank.h"
 #include "Constants.h"
+#include "Utils.h"
 using namespace std;
 
 Tank newTank(COORD coord, int direction)
@@ -10,7 +10,17 @@ Tank newTank(COORD coord, int direction)
 	newTank.y = coord.Y;
 	newTank.direction = direction;
 	newTank.isAlive = true;
+	newTank.round = { -1, -1, false, -1 };
+	newTank.directionTimer = { false, -1 };
+	newTank.respawnTimer = { false, -1 };
 	return newTank;
+}
+
+Tank newAiTank(COORD coord, int direction)
+{
+	Tank tank = newTank(coord, direction);
+	tank.directionTimer = newTimer(getRndTime(MIN_ENEMY_KEEP_DIRECTION_TIME, MAX_ENEMY_KEEP_DIRECTION_TIME));
+	return tank;
 }
 
 Tank chageTankState(Tank tank)
@@ -92,4 +102,11 @@ Round newRound(Tank tank)
 	newRound.direction = tank.direction;
 	newRound.isActive = true;
 	return newRound;
+}
+
+Tank changeAiTankDirection(Tank tank)
+{
+	tank.direction = getRndNumber(TOTAL_DIRECTIONS);
+	tank.directionTimer = newTimer(getRndTime(MIN_ENEMY_KEEP_DIRECTION_TIME, MAX_ENEMY_KEEP_DIRECTION_TIME));
+	return tank;
 }
