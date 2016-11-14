@@ -1,3 +1,4 @@
+#include <windows.h>
 #ifndef __CONSTANTS_H__
 #define __CONSTANTS_H__
 
@@ -44,5 +45,10 @@ const int TANK_HEIGHT = 3;
 const int MAX_ENEMIES = 3;
 const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
 const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
+const COORD TOP_LEFT_RESP = { (FIELD_X + 1), (FIELD_Y + 1) };
+const COORD TOP_RIGHT_RESP = { (FIELD_WIDTH - TANK_WIDTH), (FIELD_Y + 1) };
+const COORD TOP_CENTER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_Y + TANK_HEIGHT) };
+const COORD PLAYER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_HEIGHT - TANK_HEIGHT) };
+
 
 #endif // !__CONSTANTS_H__

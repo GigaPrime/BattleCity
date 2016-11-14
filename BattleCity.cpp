@@ -11,8 +11,10 @@
 Tank player, prevPlayer;
 Tank ai, prevAi;
 
-COORD playerStart = { 30, 20 };
-COORD aiStart = { 40, 30 };
+Tank aiTanks[MAX_ENEMIES];
+Tank prevAiTanks[MAX_ENEMIES];
+
+COORD playerStart = PLAYER_RESP;
 
 void Game()
 {
@@ -23,8 +25,11 @@ void Game()
 
 void runBattle()
 {
-	player = newTank(playerStart, DOWN);
-	ai = newAiTank(aiStart, UP);
+	player = newTank(playerStart, UP);
+
+	aiTanks[0] = newAiTank(TOP_LEFT_RESP, DOWN);
+	aiTanks[1] = newAiTank(TOP_CENTER_RESP, DOWN);
+	aiTanks[2] = newAiTank(TOP_RIGHT_RESP, DOWN);
 
 	while (true)
 	{
@@ -58,7 +63,7 @@ void handlePlayerInput()
 			Tank newPlayerState = chageTankState(player, direction);
 
 			if (!checkCollision(newPlayerState) && 
-				!checkCollision(newPlayerState, ai))
+				!checkCollision(newPlayerState, aiTanks))
 			{
 				prevPlayer = player;
 				player = newPlayerState;
@@ -69,23 +74,28 @@ void handlePlayerInput()
 
 void handleAiInput()
 {
-	if (ai.directionTimer.isAlive)
+	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
-		ai.directionTimer.counter--;	
-	}
-	
-	Tank newAiState = chageTankState(ai);
+		Tank& tank = aiTanks[i];
+		if (tank.directionTimer.isAlive)
+		{
+			tank.directionTimer.counter--;
+		}
 
-	if (checkCollision(newAiState) ||
-		checkCollision(newAiState, player) ||
-		ai.directionTimer.counter <= 0)
-	{
-		ai = changeAiTankDirection(ai);
-	}
-	else
-	{
-		prevAi = ai;
-		ai = newAiState;
+		Tank newAiState = chageTankState(tank);
+
+		if (checkCollision(newAiState) ||
+			checkCollision(newAiState, player) ||
+			checkCollision(newAiState, tank, aiTanks) ||
+			tank.directionTimer.counter <= 0)
+		{
+			aiTanks[i] = changeAiTankDirection(tank);
+		}
+		else
+		{
+			prevAiTanks[i] = tank;
+			aiTanks[i] = newAiState;
+		}
 	}
 }
 
@@ -114,12 +124,18 @@ void handleAiRounds()
 void render()
 {
 	unrender(prevPlayer);
-	unrender(prevAi);
 	unrender(prevPlayer.round);
-
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		unrender(prevAiTanks[i]);
+	}
+//---------------------------------------
 	render(player);
-	render(ai);
 	render(player.round);
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		render(aiTanks[i]);
+	}
 }
 
 void showBounds()
