@@ -89,6 +89,19 @@ bool checkCollision(Tank tankProjection, Tank tank, Tank tanks[])
 	return false;
 }
 
+bool checkCollision(Round round, Tank tanks[])
+{
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		return  (round.x >= tanks[i].x && round.x < tanks[i].x + TANK_WIDTH && round.y >= tanks[i].y && round.y < tanks[i].y + TANK_HEIGHT);
+	}
+}
+
+bool checkCollision(Tank tanks[], Round round)
+{
+	return checkCollision(round, tanks);
+}
+
 /*collision check
 1. player to bounds;
 2. player to AI;

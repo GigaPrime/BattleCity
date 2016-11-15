@@ -9,7 +9,6 @@
 #include "Utils.h"
 
 Tank player, prevPlayer;
-Tank ai, prevAi;
 
 Tank aiTanks[MAX_ENEMIES];
 Tank prevAiTanks[MAX_ENEMIES];
@@ -105,7 +104,9 @@ void handlePlayerRounds()
 	{
 		Round newRoundState = chageRoundState(player.round);
 		prevPlayer.round = player.round;
-		if (!checkCollision(newRoundState))
+		if (!checkCollision(newRoundState) &&
+			!checkCollision(newRoundState, aiTanks) &&
+			!checkCollision(aiTanks, newRoundState))
 		{
 			player.round = newRoundState;
 		}
@@ -118,7 +119,6 @@ void handlePlayerRounds()
 
 void handleAiRounds()
 {
-
 }
 
 void render()
@@ -129,6 +129,7 @@ void render()
 	{
 		unrender(prevAiTanks[i]);
 	}
+	
 //---------------------------------------
 	render(player);
 	render(player.round);

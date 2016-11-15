@@ -11,5 +11,7 @@ bool checkCollision(Tank tank, Round round); // round to tank collision;
 bool checkCollision(Round round1, Round round2); // round to round collision;
 bool checkCollision(Tank tank, Tank tanks[]); // player to enemies collision;
 bool checkCollision(Tank tankProjection, Tank tank, Tank tanks[]); // enemies to enemies collision;
+bool checkCollision(Round round, Tank tanks[]); // round to enemies collision;
+bool checkCollision(Tank tanks[], Round round); // enemies to round collision;
 
 #endif // !__Collisions_H__
