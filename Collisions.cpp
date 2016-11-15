@@ -41,11 +41,11 @@ bool checkCollision(Tank tank1, Tank tank2)
 
 bool checkCollision(Round round, Tank tank)
 {
+	COORD roundFlight = { round.x, round.y };
 	COORD topLeft = { tank.x, tank.y };
 	COORD bottomRight = { tank.x + TANK_WIDTH - 1, tank.y + TANK_HEIGHT - 1 };
-	COORD roundFlight = { round.x, round.y };
 
-	return (round.x >= topLeft.X && round.x <= bottomRight.X && round.y >= topLeft.Y && round.y < bottomRight.Y);
+	return isPointWithinRectangle(roundFlight, topLeft, bottomRight);
 }
 
 bool checkCollision(Tank tank, Round round)
@@ -89,18 +89,6 @@ bool checkCollision(Tank tankProjection, Tank tank, Tank tanks[])
 	return false;
 }
 
-bool checkCollision(Round round, Tank tanks[])
-{
-	for (int i = 0; i < MAX_ENEMIES; i++)
-	{
-		return  (round.x >= tanks[i].x && round.x < tanks[i].x + TANK_WIDTH && round.y >= tanks[i].y && round.y < tanks[i].y + TANK_HEIGHT);
-	}
-}
-
-bool checkCollision(Tank tanks[], Round round)
-{
-	return checkCollision(round, tanks);
-}
 
 /*collision check
 1. player to bounds;

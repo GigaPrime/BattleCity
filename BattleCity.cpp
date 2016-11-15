@@ -80,6 +80,10 @@ void handleAiInput()
 		{
 			tank.directionTimer.counter--;
 		}
+		else
+		{
+			tank.isAlive = false;
+		}
 
 		Tank newAiState = chageTankState(tank);
 
@@ -100,13 +104,15 @@ void handleAiInput()
 
 void handlePlayerRounds()
 {
+	
 	if (player.round.isActive)
 	{
 		Round newRoundState = chageRoundState(player.round);
 		prevPlayer.round = player.round;
 		if (!checkCollision(newRoundState) &&
-			!checkCollision(newRoundState, aiTanks) &&
-			!checkCollision(aiTanks, newRoundState))
+			!checkCollision(newRoundState, aiTanks[0]) &&
+			!checkCollision(newRoundState, aiTanks[1]) && 
+			!checkCollision(newRoundState, aiTanks[2]))
 		{
 			player.round = newRoundState;
 		}
@@ -119,6 +125,7 @@ void handlePlayerRounds()
 
 void handleAiRounds()
 {
+
 }
 
 void render()
