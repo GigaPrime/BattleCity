@@ -65,6 +65,10 @@ bool checkCollision(Tank tank, Tank tanks[])
 {
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
+		if (tanks[i].isAlive == false)
+		{
+			continue;
+		}
 		if (checkCollision(tank, tanks[i]))
 		{
 			return true;
@@ -77,7 +81,7 @@ bool checkCollision(Tank tankProjection, Tank tank, Tank tanks[])
 {
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
-		if (tank.x == tanks[i].x && tank.y == tanks[i].y)
+		if (tanks[i].isAlive == false || (tank.x == tanks[i].x && tank.y == tanks[i].y))
 		{
 			continue;
 		}

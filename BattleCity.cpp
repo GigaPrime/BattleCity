@@ -76,14 +76,17 @@ void handleAiInput()
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
 		Tank& tank = aiTanks[i];
+		Tank& prevTank = prevAiTanks[i];
+
+		if (tank.isAlive == false)
+		{
+			continue;
+		}
+
 		if (tank.directionTimer.isAlive)
 		{
 			tank.directionTimer.counter--;
-		}
-		else
-		{
-			tank.isAlive = false;
-		}
+		}		
 
 		Tank newAiState = chageTankState(tank);
 
@@ -92,27 +95,27 @@ void handleAiInput()
 			checkCollision(newAiState, tank, aiTanks) ||
 			tank.directionTimer.counter <= 0)
 		{
-			aiTanks[i] = changeAiTankDirection(tank);
+			tank = changeAiTankDirection(tank);
+		}
+		else if (checkCollision(newAiState, player.round))
+		{
+			killTank(tank);
 		}
 		else
 		{
-			prevAiTanks[i] = tank;
-			aiTanks[i] = newAiState;
+			prevTank = tank;
+			tank = newAiState;
 		}
 	}
 }
 
 void handlePlayerRounds()
 {
-	
 	if (player.round.isActive)
 	{
 		Round newRoundState = chageRoundState(player.round);
 		prevPlayer.round = player.round;
-		if (!checkCollision(newRoundState) &&
-			!checkCollision(newRoundState, aiTanks[0]) &&
-			!checkCollision(newRoundState, aiTanks[1]) && 
-			!checkCollision(newRoundState, aiTanks[2]))
+		if (!checkCollision(newRoundState) && !playerRoundCollisionAiTank(newRoundState))
 		{
 			player.round = newRoundState;
 		}
@@ -132,18 +135,11 @@ void render()
 {
 	unrender(prevPlayer);
 	unrender(prevPlayer.round);
-	for (int i = 0; i < MAX_ENEMIES; i++)
-	{
-		unrender(prevAiTanks[i]);
-	}
-	
+	unrender(prevAiTanks);
 //---------------------------------------
 	render(player);
 	render(player.round);
-	for (int i = 0; i < MAX_ENEMIES; i++)
-	{
-		render(aiTanks[i]);
-	}
+	render(aiTanks);
 }
 
 void showBounds()
@@ -151,3 +147,25 @@ void showBounds()
 	renderBounds();
 }
 
+bool playerRoundCollisionAiTank(Round round)
+{
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		if (aiTanks[i].isAlive == false)
+		{
+			continue;
+		}
+		bool impact = checkCollision(round, aiTanks[i]);
+		if (impact)
+		{
+			killTank(aiTanks[i]);
+			return true;
+		}
+	}
+	return false;
+}
+
+void killTank(Tank& tank)
+{
+	tank.isAlive = false;
+}

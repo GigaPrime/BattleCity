@@ -1,3 +1,6 @@
+#include "Round.h"
+#include "Tank.h"
+
 #ifndef __BATTLECITY_H__
 #define __BATTLECITY_H__
 
@@ -11,5 +14,8 @@ void handleAiRounds();
 void render();
 
 void Game();
+
+bool playerRoundCollisionAiTank(Round round);
+void killTank(Tank& tank);
 
 #endif // !__BATTLECITY_H__

@@ -31,4 +31,11 @@ char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 
 };
 
+char introSprites[CHARS_TOTAL][CHARS_SIZE][CHARS_SIZE]
+{
+	{
+		{BF, BB, BF, BB}
+	}
+}
+
 #endif // !__SPRITES_H__

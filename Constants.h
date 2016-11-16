@@ -10,10 +10,10 @@ const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
 
 //BattleField dimentions
-const int FIELD_X = 10;
-const int FIELD_Y = 5;
-const int FIELD_WIDTH = FIELD_X + 60;
-const int FIELD_HEIGHT = FIELD_Y + 30;
+const int FIELD_X = 20;
+const int FIELD_Y = 10;
+const int FIELD_WIDTH = FIELD_X + 80;
+const int FIELD_HEIGHT = FIELD_Y + 50;
 
 //Action constants
 const char FIRE = ' ';
@@ -36,6 +36,12 @@ const char GV = char(186); //gun_vertical
 const char BD = char(176); //body
 const char SP = char(255); //space
 const char FR = char('*'); //fire
+
+//Intro wiev elements
+const int CHARS_TOTAL = 8; //quantity of unique letters
+const int CHARS_SIZE = 12; //Letter size
+const char BB = char(177); //brick blank
+const char BF = char(178); //brick full
 
 //Tank size constants
 const int TANK_WIDTH = 5;
