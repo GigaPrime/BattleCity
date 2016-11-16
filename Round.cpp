@@ -24,3 +24,10 @@ Round chageRoundState(Round round)
 	}
 	return round;
 }
+
+void killRound(Round& round)
+{
+	round.isActive = false;
+	round.x = 0;
+	round.y = 0;
+}

@@ -1,6 +1,7 @@
 #include "Tank.h"
 #include "Constants.h"
 #include "Utils.h"
+#include "Timer.h"
 using namespace std;
 
 Tank newTank(COORD coord, int direction)
@@ -10,7 +11,7 @@ Tank newTank(COORD coord, int direction)
 	newTank.y = coord.Y;
 	newTank.direction = direction;
 	newTank.isAlive = true;
-	newTank.round = { -1, -1, false, -1 };
+	newTank.round = { 0, 0, false, -1 };
 	newTank.directionTimer = { false, -1 };
 	newTank.respawnTimer = { false, -1 };
 	return newTank;
@@ -74,7 +75,7 @@ Tank chageTankState(Tank tank, int direction)
 	return tank;
 }
 
-Round newRound(Tank tank)
+Round newRound(Tank& tank)
 {
 	Round newRound;
 
@@ -101,12 +102,26 @@ Round newRound(Tank tank)
 
 	newRound.direction = tank.direction;
 	newRound.isActive = true;
+	tank.roundTimer = newTimer(getRndTime(MIN_ENEMY_KEEP_DIRECTION_TIME, MAX_ENEMY_KEEP_DIRECTION_TIME));
 	return newRound;
 }
 
-Tank changeAiTankDirection(Tank tank)
+Tank newAiTank(COORD coord, int direction, double timer)
+{
+	Tank tank = newTank(coord, direction);
+	tank.directionTimer = newTimer(timer);
+	return tank;
+}
+
+void changeAiTankDirection(Tank& tank)
 {
 	tank.direction = getRndNumber(TOTAL_DIRECTIONS);
 	tank.directionTimer = newTimer(getRndTime(MIN_ENEMY_KEEP_DIRECTION_TIME, MAX_ENEMY_KEEP_DIRECTION_TIME));
-	return tank;
 }
+
+void killTank(Tank& tank)
+{
+	tank.isAlive = false;
+	tank.respawnTimer = newTimer(TANK_RESP_TIMER);
+}
+

@@ -35,6 +35,7 @@ void runBattle()
 		handlePlayerInput();
 		handleAiInput();
 		handlePlayerRounds();
+		handleAiRounds();
 		render();
 		Sleep(MAIN_LOOP_SLEEP);
 	}
@@ -80,6 +81,20 @@ void handleAiInput()
 
 		if (tank.isAlive == false)
 		{
+			if (tank.respawnTimer.counter-- <= 0)
+			{
+				Tank nAiTank = newAiTank(TOP_CENTER_RESP, NO_DIRECTION, INITAIL_TANK_RESP_TIMER);
+			
+				if (checkCollision(nAiTank, player) ||
+					checkCollision(nAiTank, tank, aiTanks))
+				{
+					changeAiTankDirection(tank);
+				}
+				else
+				{
+					tank = nAiTank;
+				}
+			}
 			continue;
 		}
 
@@ -88,23 +103,35 @@ void handleAiInput()
 			tank.directionTimer.counter--;
 		}		
 
-		Tank newAiState = chageTankState(tank);
-
-		if (checkCollision(newAiState) ||
-			checkCollision(newAiState, player) ||
-			checkCollision(newAiState, tank, aiTanks) ||
-			tank.directionTimer.counter <= 0)
+		if (tank.roundTimer.isAlive)
 		{
-			tank = changeAiTankDirection(tank);
+			tank.roundTimer.counter--;
 		}
-		else if (checkCollision(newAiState, player.round))
+
+		if (tank.round.isActive == false && tank.roundTimer.counter <= 0)
 		{
-			killTank(tank);
+			tank.round = newRound(tank);
 		}
 		else
 		{
-			prevTank = tank;
-			tank = newAiState;
+			Tank newAiState = chageTankState(tank);
+
+			if (checkCollision(newAiState) ||
+				checkCollision(newAiState, player) ||
+				checkCollision(newAiState, tank, aiTanks) ||
+				tank.directionTimer.counter <= 0)
+			{
+				changeAiTankDirection(tank);
+			}
+			else if (checkCollision(newAiState, player.round))
+			{
+				killTank(tank);
+			}
+			else
+			{
+				prevTank = tank;
+				tank = newAiState;
+			}
 		}
 	}
 }
@@ -121,24 +148,37 @@ void handlePlayerRounds()
 		}
 		else
 		{
-			player.round.isActive = false;
+			killRound(player.round);
 		}
 	}
 }
 
 void handleAiRounds()
 {
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		Round& round = aiTanks[i].round;
+		Round& prevRound = prevAiTanks[i].round;
 
+		Round newRoundState = chageRoundState(round);
+		prevRound = round;
+		if (!checkCollision(newRoundState))
+		{
+			round = newRoundState;
+		}
+		else
+		{
+			killRound(round);
+		}
+	}
 }
 
 void render()
 {
 	unrender(prevPlayer);
-	unrender(prevPlayer.round);
 	unrender(prevAiTanks);
 //---------------------------------------
 	render(player);
-	render(player.round);
 	render(aiTanks);
 }
 
@@ -163,9 +203,4 @@ bool playerRoundCollisionAiTank(Round round)
 		}
 	}
 	return false;
-}
-
-void killTank(Tank& tank)
-{
-	tank.isAlive = false;
 }

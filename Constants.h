@@ -8,6 +8,7 @@ const int DOWN = 1;
 const int LEFT = 2;
 const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
+const int NO_DIRECTION = 5;
 
 //BattleField dimentions
 const int FIELD_X = 20;
@@ -51,10 +52,11 @@ const int TANK_HEIGHT = 3;
 const int MAX_ENEMIES = 3;
 const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
 const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
+const double TANK_RESP_TIMER = 5.0;
+const double INITAIL_TANK_RESP_TIMER = 1.0;
 const COORD TOP_LEFT_RESP = { (FIELD_X + 1), (FIELD_Y + 1) };
 const COORD TOP_RIGHT_RESP = { (FIELD_WIDTH - TANK_WIDTH), (FIELD_Y + 1) };
 const COORD TOP_CENTER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_Y + TANK_HEIGHT) };
 const COORD PLAYER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_HEIGHT - TANK_HEIGHT) };
-
 
 #endif // !__CONSTANTS_H__

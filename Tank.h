@@ -14,13 +14,16 @@ struct Tank
 	Round round;
 	Timer directionTimer;
 	Timer respawnTimer;
+	Timer roundTimer;
 };
 
 Tank chageTankState(Tank tank);
 Tank chageTankState(Tank tank, int direction);
-Round newRound(Tank tank);
+Round newRound(Tank& tank);
 Tank newTank(COORD coord, int direction);
 Tank newAiTank(COORD coord, int direction);
-Tank changeAiTankDirection(Tank tank);
+Tank newAiTank(COORD coord, int direction, double timer);
+void changeAiTankDirection(Tank& tank);
+void killTank(Tank& tank);
 
 #endif // !__TANK_H__

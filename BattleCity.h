@@ -16,6 +16,5 @@ void render();
 void Game();
 
 bool playerRoundCollisionAiTank(Round round);
-void killTank(Tank& tank);
 
 #endif // !__BATTLECITY_H__

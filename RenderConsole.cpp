@@ -4,6 +4,8 @@
 
 ; void render(Tank tank)
 {
+	render(tank.round);
+
 	if (tank.isAlive == false)
 	{
 		return;
@@ -19,6 +21,7 @@
 
 void unrender(Tank tank)
 {
+	unrender(tank.round);
 	for (int x = 0; x < TANK_WIDTH; x++)
 	{
 		for (int y = 0; y < TANK_HEIGHT; y++)
