@@ -42,6 +42,22 @@ void unrender(Round round)
 	WriteChar(round.x, round.y, SP);
 }
 
+void render(Tank tanks[])
+{
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		render(tanks[i]);
+	}
+}
+
+void unrender(Tank tanks[])
+{
+	for (int i = 0; i < MAX_ENEMIES; i++)
+	{
+		unrender(tanks[i]);
+	}
+}
+
 void renderBounds()
 {
 	// Console title name
@@ -64,27 +80,18 @@ void renderBounds()
 	for (int y = FIELD_Y + 1; y <= FIELD_HEIGHT - 1; y++)
 	{
 		WriteChar(FIELD_X, y, char(186));
-		WriteChar(FIELD_WIDTH, y, char (186));
+		WriteChar(FIELD_WIDTH, y, char(186));
 	}
 }
 
-void render(Tank tanks[])
+void renderGameName(Letter letter)
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int x = 0; x < CHARS_SIZE; x++)
 	{
-		render(tanks[i]);
+		for (int y = 0; y < CHARS_SIZE; y++)
+		{
+			WriteChar(x + letter.x, y + letter.y, letterSprites[letter.letterNumber][y][x]);
+		}
+		Sleep(100);
 	}
-}
-
-void unrender(Tank tanks[])
-{
-	for (int i = 0; i < MAX_ENEMIES; i++)
-	{
-		unrender(tanks[i]);
-	}
-}
-
-void renderIntro()
-{
-	
 }

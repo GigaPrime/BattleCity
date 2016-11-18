@@ -31,11 +31,127 @@ char tankSprites[TOTAL_DIRECTIONS][TANK_HEIGHT][TANK_WIDTH]
 
 };
 
-char introSprites[CHARS_TOTAL][CHARS_SIZE][CHARS_SIZE]
+char letterSprites[TOTAL_CHARS][CHARS_SIZE][CHARS_SIZE]
 {
 	{
-		{BF, BB, BF, BB}
-	}
-}
+		{ BF, BB, BF, BB, BF, BB, BF, BB, BF, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, BB, BF, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, BF, BB, SP, SP },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, BF, BB, BF, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, BF, BB, BF, BB },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, SP }
+	},
+
+	{
+		{ SP, SP, SP, SP, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ SP, SP, SP, BF, BB, BF, SP, SP, SP, BF, BB, BF },
+		{ SP, SP, BF, BB, BF, SP, SP, SP, SP, BB, BF, BB },
+		{ SP, SP, BB, BF, BB, SP, SP, SP, SP, BF, BB, BF },
+		{ SP, BB, BF, BB, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ SP, BF, BB, BF, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF }
+	},
+
+	{
+		{ BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, BB, BF },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP }
+	},
+
+	{
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, BF, BB },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF }
+	},
+
+	{
+		{ BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, BF, BB },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF }
+	},
+
+	{
+		{ SP, SP, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ SP, BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF },
+		{ SP, BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, SP, SP, SP },
+		{ SP, BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF },
+		{ SP, BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB },
+		{ SP, SP, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF }
+	},
+
+	{
+		{ BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BB, BF, BB, SP, SP, SP, SP, SP },
+		{ SP, SP, SP, SP, BF, BB, BF, SP, SP, SP, SP, SP },
+		{ BB, BF, BB, BF, BB, BF, BB, BF, BB, BF, BB, BF }
+	},
+
+	{
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, BF, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ SP, BB, BF, BB, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ SP, SP, BB, BF, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ SP, SP, SP, BB, BF, BB, BF, BB, BF, BB, BF, BB },
+		{ SP, SP, SP, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ SP, SP, SP, SP, SP, SP, SP, SP, SP, BB, BF, BB },
+		{ BB, BF, SP, SP, SP, SP, SP, SP, SP, BF, BB, BF },
+		{ BF, BB, SP, SP, SP, SP, SP, SP, BF, BB, BF, SP },
+		{ SP, BF, BB, BF, BB, BF, BB, BF, BB, BF, SP, SP }
+	},
+};
 
 #endif // !__SPRITES_H__

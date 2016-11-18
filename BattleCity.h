@@ -4,6 +4,7 @@
 #ifndef __BATTLECITY_H__
 #define __BATTLECITY_H__
 
+void showIntro();
 void showBounds();
 
 void runBattle();
@@ -12,6 +13,7 @@ void handleAiInput();
 void handlePlayerRounds();
 void handleAiRounds();
 void render();
+
 
 void Game();
 

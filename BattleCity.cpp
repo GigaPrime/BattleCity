@@ -13,11 +13,15 @@ Tank player, prevPlayer;
 Tank aiTanks[MAX_ENEMIES];
 Tank prevAiTanks[MAX_ENEMIES];
 
+Letter letter;
+
 COORD playerStart = PLAYER_RESP;
 
 void Game()
 {
 	srand(time(0));
+	showIntro();
+	Sleep(5000);
 	showBounds();
 	runBattle();
 }
@@ -185,6 +189,47 @@ void render()
 void showBounds()
 {
 	renderBounds();
+}
+
+void showIntro()
+{
+	
+	letter.x = GAME_NAME_START_X;
+	letter.y = GAME_NAME_START_Y;
+	letter.letterNumber = 0;
+
+	for (int x = 0; x < 5; x++) // 5 unique letters quantitiy in the first string
+	{
+		renderGameName(letter);
+		letter.x += CHARS_DIST;
+		letter.letterNumber++;
+
+		if (letter.letterNumber == L)
+		{
+			letter.letterNumber = T;
+			renderGameName(letter);
+			letter.x += CHARS_DIST;
+			letter.letterNumber++;
+		}
+	}
+
+	letter.x = GAME_NAME_START_X * 2.5;
+	letter.y = GAME_NAME_START_Y * 2.5;
+
+	for (int x = 0; x < 3; x++) // 3 unique letters quantitiy in the second string
+	{
+		renderGameName(letter);
+		letter.x += CHARS_DIST;
+		letter.letterNumber++;
+
+		if (letter.letterNumber == Y)
+		{
+			letter.letterNumber = T;
+			renderGameName(letter);
+			letter.x += CHARS_DIST;
+			letter.letterNumber = Y;
+		}
+	}
 }
 
 bool playerRoundCollisionAiTank(Round round)

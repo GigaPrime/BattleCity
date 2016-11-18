@@ -8,13 +8,13 @@ const int DOWN = 1;
 const int LEFT = 2;
 const int UP = 3;
 const int TOTAL_DIRECTIONS = 4;
-const int NO_DIRECTION = 5;
+const int NO_DIRECTION = -1;
 
 //BattleField dimentions
 const int FIELD_X = 20;
-const int FIELD_Y = 10;
-const int FIELD_WIDTH = FIELD_X + 80;
-const int FIELD_HEIGHT = FIELD_Y + 50;
+const int FIELD_Y = 14;
+const int FIELD_WIDTH = FIELD_X + 78;
+const int FIELD_HEIGHT = FIELD_Y + 45;
 
 //Action constants
 const char FIRE = ' ';
@@ -39,10 +39,21 @@ const char SP = char(255); //space
 const char FR = char('*'); //fire
 
 //Intro wiev elements
-const int CHARS_TOTAL = 8; //quantity of unique letters
+const int TOTAL_CHARS = 8; //quantity of unique letters
 const int CHARS_SIZE = 12; //Letter size
+const int CHARS_DIST = 14; // distance between letters
+const int GAME_NAME_START_X = 10; //name start position x
+const int GAME_NAME_START_Y = 12; //name start position y
 const char BB = char(177); //brick blank
 const char BF = char(178); //brick full
+const int B = 0;
+const int A = 1;
+const int T = 2;
+const int L = 3;
+const int E = 4;
+const int C = 5;
+const int I = 6;
+const int Y = 7;
 
 //Tank size constants
 const int TANK_WIDTH = 5;

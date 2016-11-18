@@ -17,10 +17,10 @@ bool checkCollision(Tank tank)
 
 bool checkCollision(Round round)
 {
-	return (round.x <= FIELD_X) ||
-		   (round.y <= FIELD_Y) ||
-		   (round.x >= FIELD_WIDTH) ||
-		   (round.y >= FIELD_HEIGHT);
+	return (round.x <= FIELD_X + 1) ||
+		   (round.y <= FIELD_Y + 1) ||
+		   (round.x >= FIELD_WIDTH - 1) ||
+		   (round.y >= FIELD_HEIGHT - 1);
 }
 
 bool checkCollision(Tank tank1, Tank tank2)
