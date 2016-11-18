@@ -10,10 +10,13 @@
 
 Tank player, prevPlayer;
 
-Tank aiTanks[MAX_ENEMIES];
-Tank prevAiTanks[MAX_ENEMIES];
+Tank aiTanks[MAX_ALIVE_ENEMIES];
+Tank prevAiTanks[MAX_ALIVE_ENEMIES];
 
 Letter letter;
+Counter counter;
+
+int killCounter = 0;
 
 COORD playerStart = PLAYER_RESP;
 
@@ -21,7 +24,6 @@ void Game()
 {
 	srand(time(0));
 	showIntro();
-	Sleep(5000);
 	showBounds();
 	runBattle();
 }
@@ -34,7 +36,7 @@ void runBattle()
 	aiTanks[1] = newAiTank(TOP_CENTER_RESP, DOWN);
 	aiTanks[2] = newAiTank(TOP_RIGHT_RESP, DOWN);
 
-	while (true)
+	while (killCounter < 20)
 	{
 		handlePlayerInput();
 		handleAiInput();
@@ -78,7 +80,7 @@ void handlePlayerInput()
 
 void handleAiInput()
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		Tank& tank = aiTanks[i];
 		Tank& prevTank = prevAiTanks[i];
@@ -159,7 +161,7 @@ void handlePlayerRounds()
 
 void handleAiRounds()
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		Round& round = aiTanks[i].round;
 		Round& prevRound = prevAiTanks[i].round;
@@ -193,10 +195,9 @@ void showBounds()
 
 void showIntro()
 {
-	
 	letter.x = GAME_NAME_START_X;
 	letter.y = GAME_NAME_START_Y;
-	letter.letterNumber = 0;
+	letter.letterNumber = B;
 
 	for (int x = 0; x < 5; x++) // 5 unique letters quantitiy in the first string
 	{
@@ -213,7 +214,7 @@ void showIntro()
 		}
 	}
 
-	letter.x = GAME_NAME_START_X * 2.5;
+	letter.x = GAME_NAME_START_X * 2.4;
 	letter.y = GAME_NAME_START_Y * 2.5;
 
 	for (int x = 0; x < 3; x++) // 3 unique letters quantitiy in the second string
@@ -232,9 +233,17 @@ void showIntro()
 	}
 }
 
+void showCounter(int killCounter)
+{
+		counter.x = 10;
+		counter.y = 30;
+		counter.digitNumber = killCounter;
+		renderCounter(counter);
+}
+
 bool playerRoundCollisionAiTank(Round round)
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		if (aiTanks[i].isAlive == false)
 		{
@@ -244,6 +253,8 @@ bool playerRoundCollisionAiTank(Round round)
 		if (impact)
 		{
 			killTank(aiTanks[i]);
+			killCounter++;
+			showCounter(killCounter);
 			return true;
 		}
 	}

@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "Utils.h"
+#include "Constants.h"
 
 bool isPointWithinRectangle(COORD point, COORD topLeft, COORD bottomRight)
 {

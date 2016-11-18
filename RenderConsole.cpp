@@ -44,7 +44,7 @@ void unrender(Round round)
 
 void render(Tank tanks[])
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		render(tanks[i]);
 	}
@@ -52,7 +52,7 @@ void render(Tank tanks[])
 
 void unrender(Tank tanks[])
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		unrender(tanks[i]);
 	}
@@ -66,26 +66,26 @@ void renderBounds()
 	// Console buffer size
 	system("mode con lines=62 cols=102");
 
-	ShowCursor(false);
-
-	WriteChar(FIELD_X, FIELD_Y, char(201));
-	WriteChar(FIELD_WIDTH, FIELD_Y, char(187));
-	WriteChar(FIELD_X, FIELD_HEIGHT, char(200));
-	WriteChar(FIELD_WIDTH, FIELD_HEIGHT, char(188));
-	for (int x = FIELD_X + 1; x < FIELD_WIDTH; x++)
+	WriteChar(FIELD_X - 2, FIELD_Y - 1, char(201));
+	WriteChar(FIELD_WIDTH + 2, FIELD_Y - 1, char(187));
+	WriteChar(FIELD_X - 2, FIELD_HEIGHT + 1, char(200));
+	WriteChar(FIELD_WIDTH + 2, FIELD_HEIGHT + 1, char(188));
+	for (int x = FIELD_X - 1; x < FIELD_WIDTH + 2; x++)
 	{
-		WriteChar(x, FIELD_Y, char(205));
-		WriteChar(x, FIELD_HEIGHT, char(205));
+		WriteChar(x, FIELD_Y - 1, char(205));
+		WriteChar(x, FIELD_HEIGHT + 1, char(205));
 	}
-	for (int y = FIELD_Y + 1; y <= FIELD_HEIGHT - 1; y++)
+	for (int y = FIELD_Y; y <= FIELD_HEIGHT; y++)
 	{
-		WriteChar(FIELD_X, y, char(186));
-		WriteChar(FIELD_WIDTH, y, char(186));
+		WriteChar(FIELD_X - 2, y, char(186));
+		WriteChar(FIELD_WIDTH + 2, y, char(186));
 	}
 }
 
 void renderGameName(Letter letter)
 {
+	ShowCursor(false);
+
 	for (int x = 0; x < CHARS_SIZE; x++)
 	{
 		for (int y = 0; y < CHARS_SIZE; y++)
@@ -93,5 +93,16 @@ void renderGameName(Letter letter)
 			WriteChar(x + letter.x, y + letter.y, letterSprites[letter.letterNumber][y][x]);
 		}
 		Sleep(100);
+	}
+}
+
+void renderCounter(Counter counter)
+{
+	for (int x = 0; x < COUNTER_DIMENTIONS; x++)
+	{
+		for (int y = 0; y < COUNTER_DIMENTIONS; y++)
+		{
+			WriteChar(x + counter.x, y + counter.y, counterSprites[counter.digitNumber - 1][y][x]);
+		}
 	}
 }

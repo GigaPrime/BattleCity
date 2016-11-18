@@ -42,8 +42,8 @@ const char FR = char('*'); //fire
 const int TOTAL_CHARS = 8; //quantity of unique letters
 const int CHARS_SIZE = 12; //Letter size
 const int CHARS_DIST = 14; // distance between letters
-const int GAME_NAME_START_X = 10; //name start position x
-const int GAME_NAME_START_Y = 12; //name start position y
+const double GAME_NAME_START_X = 10; //name start position x
+const double GAME_NAME_START_Y = 12; //name start position y
 const char BB = char(177); //brick blank
 const char BF = char(178); //brick full
 const int B = 0;
@@ -55,12 +55,19 @@ const int C = 5;
 const int I = 6;
 const int Y = 7;
 
+//counter wiev elements
+const int COUNTER_DIMENTIONS = 3;
+const int COUNTER_NUMBER = 10;
+const char HS = char(95);
+const char VS = char(179);
+
 //Tank size constants
 const int TANK_WIDTH = 5;
 const int TANK_HEIGHT = 3;
 
 //Game constants
-const int MAX_ENEMIES = 3;
+const int MAX_ENEMIES = 10;
+const int MAX_ALIVE_ENEMIES = 3;
 const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
 const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
 const double TANK_RESP_TIMER = 5.0;

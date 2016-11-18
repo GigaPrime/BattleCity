@@ -17,10 +17,10 @@ bool checkCollision(Tank tank)
 
 bool checkCollision(Round round)
 {
-	return (round.x <= FIELD_X + 1) ||
-		   (round.y <= FIELD_Y + 1) ||
-		   (round.x >= FIELD_WIDTH - 1) ||
-		   (round.y >= FIELD_HEIGHT - 1);
+	return (round.x < FIELD_X + 1) ||
+		   (round.y < FIELD_Y + 1) ||
+		   (round.x > FIELD_WIDTH - 1) ||
+		   (round.y > FIELD_HEIGHT - 1);
 }
 
 bool checkCollision(Tank tank1, Tank tank2)
@@ -63,7 +63,7 @@ bool checkCollision(Round round1, Round round2)
 
 bool checkCollision(Tank tank, Tank tanks[])
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		if (tanks[i].isAlive == false)
 		{
@@ -79,7 +79,7 @@ bool checkCollision(Tank tank, Tank tanks[])
 
 bool checkCollision(Tank tankProjection, Tank tank, Tank tanks[])
 {
-	for (int i = 0; i < MAX_ENEMIES; i++)
+	for (int i = 0; i < MAX_ALIVE_ENEMIES; i++)
 	{
 		if (tanks[i].isAlive == false || (tank.x == tanks[i].x && tank.y == tanks[i].y))
 		{

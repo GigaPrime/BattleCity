@@ -12,6 +12,13 @@ struct Letter
 	int y;
 };
 
+struct Counter
+{
+	int digitNumber;
+	int x;
+	int y;
+};
+
 void render(Tank player);
 void render(Round round);
 void render(Tank tanks[]);
@@ -21,6 +28,7 @@ void unrender(Round round);
 void unrender(Tank tanks[]);
 
 void renderBounds();
-void renderGameName(Letter);
+void renderGameName(Letter letter);
+void renderCounter(Counter counter);
 
 #endif // !__RENDERCONSOLE_H__

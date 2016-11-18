@@ -6,6 +6,7 @@
 
 void showIntro();
 void showBounds();
+void showCounter(int counter);
 
 void runBattle();
 void handlePlayerInput();
