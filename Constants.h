@@ -60,6 +60,8 @@ const int COUNTER_DIMENTIONS = 3;
 const int COUNTER_NUMBER = 10;
 const char HS = char(95);
 const char VS = char(179);
+const int COUNTER_X = 8;
+const int COUNTER_Y = 30;
 
 //Tank size constants
 const int TANK_WIDTH = 5;
@@ -67,7 +69,7 @@ const int TANK_HEIGHT = 3;
 
 //Game constants
 const int MAX_ENEMIES = 10;
-const int MAX_ALIVE_ENEMIES = 3;
+const int MAX_ALIVE_ENEMIES = 20;
 const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
 const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
 const double TANK_RESP_TIMER = 5.0;
@@ -75,6 +77,6 @@ const double INITAIL_TANK_RESP_TIMER = 1.0;
 const COORD TOP_LEFT_RESP = { (FIELD_X + 1), (FIELD_Y + 1) };
 const COORD TOP_RIGHT_RESP = { (FIELD_WIDTH - TANK_WIDTH), (FIELD_Y + 1) };
 const COORD TOP_CENTER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_Y + TANK_HEIGHT) };
-const COORD PLAYER_RESP = { ((FIELD_WIDTH - TANK_WIDTH) / 2), (FIELD_HEIGHT - TANK_HEIGHT) };
+const COORD PLAYER_RESP = { ((FIELD_WIDTH) / 2), (FIELD_HEIGHT - TANK_HEIGHT) };
 
 #endif // !__CONSTANTS_H__

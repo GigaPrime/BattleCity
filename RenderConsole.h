@@ -14,8 +14,10 @@ struct Letter
 
 struct Counter
 {
-	int digitNumber;
-	int x;
+	int digitNumber1;
+	int digitNumber2;
+	int x1;
+	int x2;
 	int y;
 };
 

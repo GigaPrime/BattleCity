@@ -1,6 +1,8 @@
+#include <iostream>
 #include "RenderConsole.h"
 #include "ConsoleLib.h"
 #include "Sprites.h"
+using namespace std;
 
 ; void render(Tank tank)
 {
@@ -66,6 +68,7 @@ void renderBounds()
 	// Console buffer size
 	system("mode con lines=62 cols=102");
 
+	//Battlefield bounds
 	WriteChar(FIELD_X - 2, FIELD_Y - 1, char(201));
 	WriteChar(FIELD_WIDTH + 2, FIELD_Y - 1, char(187));
 	WriteChar(FIELD_X - 2, FIELD_HEIGHT + 1, char(200));
@@ -79,6 +82,29 @@ void renderBounds()
 	{
 		WriteChar(FIELD_X - 2, y, char(186));
 		WriteChar(FIELD_WIDTH + 2, y, char(186));
+	}
+	
+	//Counter bounds
+	WriteChar(FIELD_X - 2, 28, char(185));
+	WriteChar(FIELD_X - 2, 35, char(185));
+	WriteChar(FIELD_X - 2, 42, char(185));
+	for (int x = 0; x < FIELD_X - 2; x++)
+	{
+		WriteChar(x, 28, char(205));
+		cout << "\n\n"
+				"   D\n"
+				" A O\n"
+				" I W\n"
+				"   N\n";
+		WriteChar(x, 35, char(205));
+		cout << "\n"
+				" S\n"
+				" H L\n"
+				" I E\n"
+				" E F\n"
+				" L T\n"
+				" D\n";
+		WriteChar(x, 42, char(205));
 	}
 }
 
@@ -102,7 +128,8 @@ void renderCounter(Counter counter)
 	{
 		for (int y = 0; y < COUNTER_DIMENTIONS; y++)
 		{
-			WriteChar(x + counter.x, y + counter.y, counterSprites[counter.digitNumber - 1][y][x]);
+			WriteChar(x + counter.x1, y + counter.y, counterSprites[counter.digitNumber1][y][x]);
+			WriteChar(x + counter.x2, y + counter.y, counterSprites[counter.digitNumber2][y][x]);
 		}
 	}
 }

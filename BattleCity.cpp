@@ -49,32 +49,43 @@ void runBattle()
 
 void handlePlayerInput()
 {
-	if (_kbhit())
+	int direction = -1;
+	Tank newPlayerState = newTank(PLAYER_RESP, UP);
+
+	if (player.isAlive)
 	{
-		int direction = -1;
-		char action = _getch();
-		if (action == 'd')
-			direction = RIGHT;
-		else if (action == 's')
-			direction = DOWN;
-		else if (action == 'a')
-			direction = LEFT;
-		else if (action == 'w')
-			direction = UP;
-		else if (action == FIRE && !player.round.isActive)
-			player.round = newRound(player);
+		if (_kbhit())
+		{
+			//int direction = -1;
+			char action = _getch();
+			if (action == 'd')
+				direction = RIGHT;
+			else if (action == 's')
+				direction = DOWN;
+			else if (action == 'a')
+				direction = LEFT;
+			else if (action == 'w')
+				direction = UP;
+			else if (action == FIRE && !player.round.isActive)
+				player.round = newRound(player);
 
-		if (direction != -1)
-		{			
-			Tank newPlayerState = chageTankState(player, direction);
-
-			if (!checkCollision(newPlayerState) && 
-				!checkCollision(newPlayerState, aiTanks))
+			if (direction != -1)
 			{
-				prevPlayer = player;
-				player = newPlayerState;
+				newPlayerState = chageTankState(player, direction);
+
+				if (!checkCollision(newPlayerState) &&
+					!checkCollision(newPlayerState, aiTanks))
+				{
+					prevPlayer = player;
+					player = newPlayerState;
+				}
 			}
 		}
+	}
+	else
+	{
+		if(!checkCollision(newPlayerState, aiTanks))
+		player = newTank(PLAYER_RESP, UP);
 	}
 }
 
@@ -168,11 +179,16 @@ void handleAiRounds()
 
 		Round newRoundState = chageRoundState(round);
 		prevRound = round;
-		if (!checkCollision(newRoundState))
+		if (!checkCollision(newRoundState) && !checkCollision(newRoundState, player))
 		{
 			round = newRoundState;
 		}
-		else
+		else if (checkCollision(newRoundState, player))
+		{
+			killTank(player);
+			killRound(round);
+		}
+		else 
 		{
 			killRound(round);
 		}
@@ -235,9 +251,11 @@ void showIntro()
 
 void showCounter(int killCounter)
 {
-		counter.x = 10;
-		counter.y = 30;
-		counter.digitNumber = killCounter;
+		counter.x1 = COUNTER_X;
+		counter.x2 = COUNTER_X + 3;
+		counter.y = COUNTER_Y;
+		counter.digitNumber1 = killCounter / 10;
+		counter.digitNumber2 = killCounter % 10;
 		renderCounter(counter);
 }
 

@@ -165,6 +165,13 @@ char letterSprites[TOTAL_CHARS][CHARS_SIZE][CHARS_SIZE]
 char counterSprites[COUNTER_NUMBER][COUNTER_DIMENTIONS][COUNTER_DIMENTIONS]
 {
 	{
+		//0
+		{ SP, HS, SP },
+		{ VS, SP, VS },
+		{ VS, HS, VS }
+	},
+
+	{
 		// 1
 		{ SP, SP, SP },
 		{ SP, SP, VS },
@@ -225,14 +232,7 @@ char counterSprites[COUNTER_NUMBER][COUNTER_DIMENTIONS][COUNTER_DIMENTIONS]
 		{ SP, HS, SP },
 		{ VS, HS, VS },
 		{ SP, HS, VS }
-	},
-
-	{
-		//0
-		{ SP, HS, SP },
-		{ VS, SP, VS },
-		{ VS, HS, VS }
-	},
+	}
 };
 
 #endif // !__SPRITES_H__
