@@ -6,7 +6,8 @@
 
 void showIntro();
 void showBounds();
-void showCounter(int counter);
+void showKillCounter(int killCounter);
+void showLifeCounter(int lifeCounter);
 
 void runBattle();
 void handlePlayerInput();

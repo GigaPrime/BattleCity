@@ -7,7 +7,7 @@
 #include "BattleCity.h"
 #include "RenderConsole.h"
 #include "Utils.h"
-
+#include "Menu.h"
 Tank player, prevPlayer;
 
 Tank aiTanks[MAX_ALIVE_ENEMIES];
@@ -16,7 +16,8 @@ Tank prevAiTanks[MAX_ALIVE_ENEMIES];
 Letter letter;
 Counter counter;
 
-int killCounter = 0;
+unsigned int killCounter = 0;
+unsigned int lifesCounter = 3;
 
 COORD playerStart = PLAYER_RESP;
 
@@ -24,8 +25,9 @@ void Game()
 {
 	srand(time(0));
 	showIntro();
-	showBounds();
-	runBattle();
+	gameMenuAction();
+	//showBounds();
+	//runBattle();
 }
 
 void runBattle()
@@ -36,7 +38,7 @@ void runBattle()
 	aiTanks[1] = newAiTank(TOP_CENTER_RESP, DOWN);
 	aiTanks[2] = newAiTank(TOP_RIGHT_RESP, DOWN);
 
-	while (killCounter < 20)
+	while (lifesCounter != 0 && killCounter < 20)
 	{
 		handlePlayerInput();
 		handleAiInput();
@@ -45,18 +47,21 @@ void runBattle()
 		render();
 		Sleep(MAIN_LOOP_SLEEP);
 	}
+
+	killCounter = 0;							  // delee all afer exam
+	lifesCounter = 3;							  // delee all afer exam
+	gameMenuAction();							  // delee all afer exam
 }
 
 void handlePlayerInput()
 {
 	int direction = -1;
 	Tank newPlayerState = newTank(PLAYER_RESP, UP);
-
+	
 	if (player.isAlive)
 	{
 		if (_kbhit())
 		{
-			//int direction = -1;
 			char action = _getch();
 			if (action == 'd')
 				direction = RIGHT;
@@ -68,6 +73,10 @@ void handlePlayerInput()
 				direction = UP;
 			else if (action == FIRE && !player.round.isActive)
 				player.round = newRound(player);
+			else if (action == 27)
+			{
+				exitMenuAction();
+			}
 
 			if (direction != -1)
 			{
@@ -142,7 +151,9 @@ void handleAiInput()
 			}
 			else if (checkCollision(newAiState, player.round))
 			{
+				killRound(player.round);
 				killTank(tank);
+				killCounter++;
 			}
 			else
 			{
@@ -187,6 +198,7 @@ void handleAiRounds()
 		{
 			killTank(player);
 			killRound(round);
+			lifesCounter--;
 		}
 		else 
 		{
@@ -199,9 +211,12 @@ void render()
 {
 	unrender(prevPlayer);
 	unrender(prevAiTanks);
+	unrender(player.round);
 //---------------------------------------
 	render(player);
 	render(aiTanks);
+	showKillCounter(killCounter);
+	showLifeCounter(lifesCounter);
 }
 
 void showBounds()
@@ -249,14 +264,26 @@ void showIntro()
 	}
 }
 
-void showCounter(int killCounter)
+void showKillCounter(int killCounter)
 {
 		counter.x1 = COUNTER_X;
 		counter.x2 = COUNTER_X + 3;
 		counter.y = COUNTER_Y;
 		counter.digitNumber1 = killCounter / 10;
 		counter.digitNumber2 = killCounter % 10;
+		SetColor(counter.counterColor = Red, Black);
 		renderCounter(counter);
+}
+
+void showLifeCounter(int lifeCounter)
+{
+	counter.x1 = COUNTER_X;
+	counter.x2 = COUNTER_X + 3;
+	counter.y = COUNTER_Y + 7;
+	counter.digitNumber1 = lifeCounter / 10;
+	counter.digitNumber2 = lifeCounter % 10;
+	SetColor(counter.counterColor = Green, Black);
+	renderCounter(counter);
 }
 
 bool playerRoundCollisionAiTank(Round round)
@@ -272,7 +299,6 @@ bool playerRoundCollisionAiTank(Round round)
 		{
 			killTank(aiTanks[i]);
 			killCounter++;
-			showCounter(killCounter);
 			return true;
 		}
 	}

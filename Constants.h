@@ -36,7 +36,7 @@ const char GH = char(205); //gun_horizontal
 const char GV = char(186); //gun_vertical
 const char BD = char(176); //body
 const char SP = char(255); //space
-const char FR = char('*'); //fire
+const char FR = char(42); //fire
 
 //Intro wiev elements
 const int TOTAL_CHARS = 8; //quantity of unique letters
@@ -55,7 +55,7 @@ const int C = 5;
 const int I = 6;
 const int Y = 7;
 
-//counter wiev elements
+//Counter wiev elements
 const int COUNTER_DIMENTIONS = 3;
 const int COUNTER_NUMBER = 10;
 const char HS = char(95);
@@ -63,13 +63,27 @@ const char VS = char(179);
 const int COUNTER_X = 8;
 const int COUNTER_Y = 30;
 
+//Wall wiev elements
+const int WALL_WIDTH = 5;
+const int WALL_HEIGHT = 3;
+
+//Menu elements
+const int MENU_X = 50;
+const int MENU_Y = 40;
+const int MENU_WIDTH = 20;
+const int MENU_HEIGHT = 10;
+const int ESC = 27;
+const int ENTER = 13;
+
 //Tank size constants
 const int TANK_WIDTH = 5;
 const int TANK_HEIGHT = 3;
 
 //Game constants
+const int CONSOLE_SIZE_X = 102;
+const int CONSOLE_SIZE_Y = 62;
 const int MAX_ENEMIES = 10;
-const int MAX_ALIVE_ENEMIES = 20;
+const int MAX_ALIVE_ENEMIES = 5;
 const double MIN_ENEMY_KEEP_DIRECTION_TIME = 0.8;
 const double MAX_ENEMY_KEEP_DIRECTION_TIME = 3.0;
 const double TANK_RESP_TIMER = 5.0;

@@ -1,6 +1,7 @@
 #include "Tank.h"
 #include "Round.h"
 #include "Constants.h"
+#include "ConsoleLib.h"
 
 #ifndef __RENDERCONSOLE_H__
 #define __RENDERCONSOLE_H__
@@ -19,6 +20,7 @@ struct Counter
 	int x1;
 	int x2;
 	int y;
+	ConsoleColor counterColor;
 };
 
 void render(Tank player);

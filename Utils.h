@@ -11,4 +11,3 @@ double getRndTime(double lBound, double hBound);
 
 
 // Tank's ski left after tanks' destruction;
-// Borders might be broken if tank is close to the border;

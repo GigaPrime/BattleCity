@@ -12,6 +12,7 @@ using namespace std;
 	{
 		return;
 	}
+	SetColor(tank.tankColor, Black);
 	for (int x = 0; x < TANK_WIDTH; x++)
 	{
 		for (int y = 0; y < TANK_HEIGHT; y++)
@@ -19,11 +20,13 @@ using namespace std;
 			WriteChar(x + tank.x, y + tank.y, tankSprites[tank.direction][y][x]);
 		}
 	}
+	SetColor(LightGray, Black);
 }
 
 void unrender(Tank tank)
 {
 	unrender(tank.round);
+
 	for (int x = 0; x < TANK_WIDTH; x++)
 	{
 		for (int y = 0; y < TANK_HEIGHT; y++)
@@ -68,6 +71,8 @@ void renderBounds()
 	// Console buffer size
 	system("mode con lines=62 cols=102");
 
+	SetColor(Brown, Black);
+
 	//Battlefield bounds
 	WriteChar(FIELD_X - 2, FIELD_Y - 1, char(201));
 	WriteChar(FIELD_WIDTH + 2, FIELD_Y - 1, char(187));
@@ -83,19 +88,22 @@ void renderBounds()
 		WriteChar(FIELD_X - 2, y, char(186));
 		WriteChar(FIELD_WIDTH + 2, y, char(186));
 	}
-	
+
 	//Counter bounds
+	SetColor(Brown, Black);
 	WriteChar(FIELD_X - 2, 28, char(185));
 	WriteChar(FIELD_X - 2, 35, char(185));
 	WriteChar(FIELD_X - 2, 42, char(185));
 	for (int x = 0; x < FIELD_X - 2; x++)
 	{
+		SetColor(Brown, Black);
 		WriteChar(x, 28, char(205));
 		cout << "\n\n"
 				"   D\n"
 				" A O\n"
 				" I W\n"
 				"   N\n";
+		SetColor(Brown, Black);
 		WriteChar(x, 35, char(205));
 		cout << "\n"
 				" S\n"
@@ -105,12 +113,15 @@ void renderBounds()
 				" L T\n"
 				" D\n";
 		WriteChar(x, 42, char(205));
+		SetColor(LightGray, Black);
 	}
 }
 
 void renderGameName(Letter letter)
 {
 	ShowCursor(false);
+
+	SetColor(Brown, Black);
 
 	for (int x = 0; x < CHARS_SIZE; x++)
 	{
@@ -120,6 +131,7 @@ void renderGameName(Letter letter)
 		}
 		Sleep(100);
 	}
+	SetColor(LightGray, Black);
 }
 
 void renderCounter(Counter counter)

@@ -14,6 +14,7 @@ Tank newTank(COORD coord, int direction)
 	newTank.round = { 0, 0, false, -1 };
 	newTank.directionTimer = { false, -1 };
 	newTank.respawnTimer = { false, -1 };
+	newTank.tankColor = Green;
 	return newTank;
 }
 
@@ -21,6 +22,7 @@ Tank newAiTank(COORD coord, int direction)
 {
 	Tank tank = newTank(coord, direction);
 	tank.directionTimer = newTimer(getRndTime(MIN_ENEMY_KEEP_DIRECTION_TIME, MAX_ENEMY_KEEP_DIRECTION_TIME));
+	tank.tankColor = Red;
 	return tank;
 }
 
@@ -110,6 +112,7 @@ Tank newAiTank(COORD coord, int direction, double timer)
 {
 	Tank tank = newTank(coord, direction);
 	tank.directionTimer = newTimer(timer);
+	tank.tankColor = Red;
 	return tank;
 }
 

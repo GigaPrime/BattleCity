@@ -1,6 +1,7 @@
 #include <windows.h>
 #include "Round.h"
 #include "Timer.h"
+#include "ConsoleLib.h"
 
 #ifndef __TANK_H__
 #define __TANK_H__
@@ -15,6 +16,7 @@ struct Tank
 	Timer directionTimer;
 	Timer respawnTimer;
 	Timer roundTimer;
+	ConsoleColor tankColor;
 };
 
 Tank chageTankState(Tank tank);

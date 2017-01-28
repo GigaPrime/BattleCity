@@ -235,4 +235,11 @@ char counterSprites[COUNTER_NUMBER][COUNTER_DIMENTIONS][COUNTER_DIMENTIONS]
 	}
 };
 
+char wallSprites[WALL_HEIGHT][WALL_WIDTH]
+{
+	{ BF, BB, BF, BB, BF },
+	{ BB, BF, BB, BF, BB },
+	{ BF, BB, BF, BB, BF }
+};
+
 #endif // !__SPRITES_H__
